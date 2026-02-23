@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
@@ -10,43 +11,44 @@
   // استخدام Firebase REST API بدون مكتبة خارجية - يعمل على كل المتصفحات
   const FB_URL = "https://omar-ali-97d74-default-rtdb.firebaseio.com";
 
-  window._fbSet = async (path, val) => {
-    try {
-      const cleanPath = path.replace(/[.#$\[\]]/g, '_');
-      const url = FB_URL + '/' + cleanPath + '.json';
-      const res = await fetch(url, {
-        method: 'PUT',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(val)
-      });
-      const result = await res.json();
-      if (result && result.error) throw new Error(result.error);
-      localStorage.setItem('backup_' + cleanPath.replace(/\//g,'_'), JSON.stringify(val));
-      return true;
-    } catch(e) {
-      console.error('Firebase save failed:', e);
-      return false;
-    }
-  };
+window.*fbSet = async (path, val) => {
+try {
+const cleanPath = path.replace(/[.#$[]]/g, ’*’);
+const url = FB_URL + ‘/’ + cleanPath + ‘.json’;
+const res = await fetch(url, {
+method: ‘PUT’,
+headers: {‘Content-Type’: ‘application/json’},
+body: JSON.stringify(val)
+});
+const result = await res.json();
+if (result && result.error) throw new Error(result.error);
+localStorage.setItem(‘backup_’ + cleanPath.replace(///g,’_’), JSON.stringify(val));
+return true;
+} catch(e) {
+console.error(‘Firebase save failed:’, e);
+return false;
+}
+};
 
-  window._fbGet = async (path) => {
-    try {
-      const cleanPath = path.replace(/[.#$\[\]]/g, '_');
-      const url = FB_URL + '/' + cleanPath + '.json';
-      const res = await fetch(url);
-      const result = await res.json();
-      if (result && result.error) throw new Error(result.error);
-      if (result !== null) localStorage.setItem('backup_' + cleanPath.replace(/\//g,'_'), JSON.stringify(result));
-      return result;
-    } catch(e) {
-      console.error('Firebase read failed:', e);
-      const local = localStorage.getItem('backup_' + path.replace(/[.#$\[\]/]/g,'_'));
-      return local ? JSON.parse(local) : null;
-    }
-  };
+window.*fbGet = async (path) => {
+try {
+const cleanPath = path.replace(/[.#$[]]/g, ’*’);
+const url = FB_URL + ‘/’ + cleanPath + ‘.json’;
+const res = await fetch(url);
+const result = await res.json();
+if (result && result.error) throw new Error(result.error);
+if (result !== null) localStorage.setItem(‘backup_’ + cleanPath.replace(///g,’*’), JSON.stringify(result));
+return result;
+} catch(e) {
+console.error(‘Firebase read failed:’, e);
+const local = localStorage.getItem(’backup*’ + path.replace(/[.#$[]/]/g,’_’));
+return local ? JSON.parse(local) : null;
+}
+};
 
-  window._firebaseReady = true;
+window._firebaseReady = true;
 </script>
+
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: 'Segoe UI', Tahoma, Arial, sans-serif; background: #f0f4f8; direction: rtl; font-size: 15px; }
@@ -153,6 +155,7 @@ body { font-family: 'Segoe UI', Tahoma, Arial, sans-serif; background: #f0f4f8; 
 .modal-box input:focus { border-color: #6a1b9a; }
 .modal-actions { display: flex; gap: 8px; }
 </style>
+
 </head>
 <body>
 
@@ -255,11 +258,13 @@ body { font-family: 'Segoe UI', Tahoma, Arial, sans-serif; background: #f0f4f8; 
   </div>
 
   <!-- SUMMARY -->
+
   <div id="tab-summary-content" style="display:block">
     <div id="summaryContent"></div>
   </div>
 
   <!-- PAYMENTS -->
+
   <div id="tab-payments-content" style="display:none">
     <div class="card">
       <div class="card-header purple">
@@ -539,5 +544,6 @@ setTimeout(()=>{
   document.getElementById('sessionModal').classList.remove('hidden');
 },5000);
 </script>
+
 </body>
 </html>
